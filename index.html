@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lean Shape Diary</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- ホームページ -->
+        <div id="home-page" class="page active">
+            <h1>今日のコンディション</h1>
+            <div class="character">
+                <img src="images/rabbit.png" alt="うさぎ">
+            </div>
+            <div class="input-section">
+                <div class="input-group">
+                    <label>体重（kg）</label>
+                    <input type="number" id="weight" step="0.1">
+                </div>
+                <div class="input-group">
+                    <label>体脂肪率（%）</label>
+                    <input type="number" id="bodyfat" step="0.1">
+                </div>
+                <div class="input-group">
+                    <label>今日の気分</label>
+                    <select id="mood">
+                        <option value="good">元気</option>
+                        <option value="normal">普通</option>
+                        <option value="heavy">重い</option>
+                    </select>
+                </div>
+            </div>
+            <div class="motivation">
+                <p id="motivation-message">今日も頑張ろう！</p>
+            </div>
+            <div class="home-buttons">
+                <button onclick="navigateToRecord()" class="record-button">
+                    <i class="fas fa-arrow-right"></i> 記録へ
+                </button>
+                <button onclick="navigateToGraph()" class="graph-button">
+                    <i class="fas fa-chart-line"></i> グラフ
+                </button>
+                <button onclick="navigateToMotivation()" class="motivation-button">
+                    <i class="fas fa-heart"></i> モチベ
+                </button>
+            </div>
+        </div>
+
+        <!-- 記録ページ -->
+        <div id="record-page" class="page">
+            <h2>詳細記録</h2>
+            <form id="record-form">
+                <div class="input-group">
+                    <label>筋肉量（kg）</label>
+                    <input type="number" id="muscle" step="0.1">
+                </div>
+                <div class="input-group">
+                    <label>タンパク質（g）</label>
+                    <input type="number" id="protein" step="1">
+                </div>
+                <div class="input-group">
+                    <label>脂質（g）</label>
+                    <input type="number" id="fat" step="1">
+                </div>
+                <div class="input-group">
+                    <label>炭水化物（g）</label>
+                    <input type="number" id="carb" step="1">
+                </div>
+                <div class="input-group">
+                    <label>運動</label>
+                    <select id="exercise">
+                        <option value="strength">筋トレ</option>
+                        <option value="cardio">有酸素</option>
+                        <option value="rest">休養</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>筋疲労度</label>
+                    <select id="fatigue">
+                        <option value="1">1（軽い）</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5（重い）</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>メモ</label>
+                    <textarea id="memo" rows="4"></textarea>
+                </div>
+                <button type="submit" class="save-button">
+                    <i class="fas fa-save"></i> 保存
+                </button>
+            </form>
+            <button onclick="navigateToHome()" class="back-button">
+                <i class="fas fa-arrow-left"></i> 戻る
+            </button>
+        </div>
+
+        <!-- グラフページ -->
+        <div id="graph-page" class="page">
+            <h2>進捗グラフ</h2>
+            <div class="graph-container">
+                <div class="graph-section">
+                    <h3>体重の推移</h3>
+                    <div id="weight-graph"></div>
+                </div>
+                <div class="graph-section">
+                    <h3>体脂肪率の推移</h3>
+                    <div id="bodyfat-graph"></div>
+                </div>
+                <div class="graph-section">
+                    <h3>筋肉量の推移</h3>
+                    <div id="muscle-graph"></div>
+                </div>
+                <div class="character-comment">
+                    <img src="images/balance-panda.png" alt="バランスパンダ">
+                    <p id="panda-comment">進捗を確認して、目標に向かって頑張ろう！</p>
+                </div>
+            </div>
+            <button onclick="navigateToHome()" class="back-button">
+                <i class="fas fa-arrow-left"></i> 戻る
+            </button>
+        </div>
+
+        <!-- モチベページ -->
+        <div id="motivation-page" class="page">
+            <div class="motivation-container">
+                <div class="character-motivation">
+                    <img src="images/soft-muscle-bear.png" alt="ゆるマッスルくま">
+                </div>
+                <div class="motivation-content">
+                    <h2>今日のメッセージ</h2>
+                    <p id="daily-message">頑張ったあなたへ、小さな褒め言葉を...</p>
+                    <button onclick="showNextMessage()" class="message-button">
+                        <i class="fas fa-arrow-right"></i> 次のメッセージ
+                    </button>
+                </div>
+            </div>
+            <button onclick="navigateToHome()" class="back-button">
+                <i class="fas fa-arrow-left"></i> 戻る
+            </button>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
